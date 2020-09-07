@@ -1,5 +1,5 @@
 import socket
-from Thread import *
+from _thread import *
 import sys
 
 server = "localhost"
