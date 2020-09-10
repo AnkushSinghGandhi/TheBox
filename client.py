@@ -45,6 +45,9 @@ class Player():
         if keys[pygame.K_DOWN]:
             self.y += self.val
 
+        self.update()
+
+    def update(self):
         # changing box's x,y axis a box again
         self.rect = (self.x, self.y, self.width, self.height)
 
@@ -54,7 +57,7 @@ def read_pos(str):
     # spliting the string from ","
     str = str.split(",")
     # returning tuple
-    return int(str[0]), int(str(1))
+    return int(str[0]), int(str[1])
 
 # function to convert position tuple into a string
 # reverse of read_pos()
@@ -62,11 +65,12 @@ def make_pos(tup):
     return str(tup[0]) + "," + str(tup[1])
 
 # function to draw box on screen and update the screen
-def redrawwindow(win,player):
+def redrawwindow(win,player,player2):
     # filling the screen with white color
     win.fill((255,255,255))
     # drawing an box on window
     player.draw(win)
+    player2.draw(win)
     # updating the display
     pygame.display.update()
 
@@ -78,13 +82,23 @@ def main():
     n = Network()
     # converting and storing the pos. tuple in startpos variable
     startpos = read_pos(n.getpos())
+    print(startpos)
     # creating 1st player
-    p1 = Player(startpos[0],startpos[1],100,100,(0,255,0))
+    p = Player(startpos[0],startpos[1],100,100,(0,255,0))
     # creating 2nd player
     p2 = Player(0,0,100,100,(0,255,0))
-
+    print(p.x,p.y)
     # game loop
     while run:
+        # sending player1's position and recieving player2's position in tuple
+        p2pos = read_pos(n.send(make_pos((p.x,p.y))))
+        # assigning player2's x cordinate
+        p2.x = p2pos[0]
+        # assigning player2's y cordinate
+        p2.y = p2pos[1]
+        #
+        p2.update()
+
         # checking for quit event
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -94,7 +108,7 @@ def main():
         # calling move methode from player class
         p.move()
         # redrawing box and updating screen
-        redrawwindow(win,p)
+        redrawwindow(win,p,p2)
 
 # calling the main function
 main()
