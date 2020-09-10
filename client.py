@@ -110,5 +110,5 @@ def main():
         # redrawing box and updating screen
         redrawwindow(win,p,p2)
 
-# calling the main function
+# calling the main func.
 main()
