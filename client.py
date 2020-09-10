@@ -48,10 +48,16 @@ class Player():
         # changing box's x,y axis a box again
         self.rect = (self.x, self.y, self.width, self.height)
 
+# function that convert positon string into a tuple
+# for example "23,24" to (23,24)
 def read_pos(str):
+    # spliting the string from ","
     str = str.split(",")
+    # returning tuple
     return int(str[0]), int(str(1))
 
+# function to convert position tuple into a string
+# reverse of read_pos()
 def make_pos(tup):
     return str(tup[0]) + "," + str(tup[1])
 
@@ -70,6 +76,7 @@ def main():
     run = True
     # creating a Network class object
     n = Network()
+    # converting and storing the pos. tuple in startpos variable
     startpos = read_pos(n.getpos())
     # creating 1st player
     p1 = Player(startpos[0],startpos[1],100,100,(0,255,0))
