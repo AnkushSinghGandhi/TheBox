@@ -10,11 +10,12 @@ class Network:
         # seting server address (this is the address of server not of the client)
         self.server = "localhost"
         # setting port no. (should be same as of server)
-        self.port = 5555
+        self.port = 9999
         # creating a tuple of server and port no.
         self.addr = (self.server, self.port)
         # connect methode defined below
         self.pos = self.connect()
+        print(self.pos)
 
     def getpos(self):
         return self.pos
@@ -25,7 +26,7 @@ class Network:
             # trying to connect to server
             self.client.connect(self.addr)
             # decoding and returning data that server send
-            return self.client.recv(2049).decode()
+            return self.client.recv(2048).decode()
 
         except:
             pass
@@ -38,5 +39,6 @@ class Network:
             # recieving decoding data and returning it
             return self.client.recv(2048).decode()
         except socket.error as e:
-            # printing the excepted error if any
+            # printing the excepted error if
             print(e)
+
