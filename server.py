@@ -25,7 +25,7 @@ print("Waiting for connections")
 
 
 def threaded_client(conn):
-    # encoding and sending string to the client
+    # encoding and sending string to the Network object
     conn.send(str.encode("connected"))
     # emtpty string variable as you can seeeee
     reply = ""
