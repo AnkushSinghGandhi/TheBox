@@ -1,6 +1,7 @@
 # importing few things
 import pygame
 from network import Network
+from player import Player
 
 # width and height for game window
 width = 500
@@ -12,44 +13,6 @@ pygame.display.set_caption("client")
 
 # variable that stores clients no.
 clientnumber = 0
-
-# player class
-class Player():
-
-    def __init__(self, x, y, width, height, color):
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.color = color
-        self.rect = (x, y, width, height)
-        self.val = 1
-    
-    # function to create a box on the screen
-    def draw(self, win):
-        pygame.draw.rect(win, self.color, self.rect)
-
-    # function to set movement of box
-    def move(self):
-        keys = pygame.key.get_pressed()
-
-        if keys[pygame.K_LEFT]:
-            self.x -= self.val
-            
-        if keys[pygame.K_RIGHT]:
-            self.x += self.val
-
-        if keys[pygame.K_UP]:
-            self.y -= self.val
-
-        if keys[pygame.K_DOWN]:
-            self.y += self.val
-
-        self.update()
-
-    def update(self):
-        # changing box's x,y axis a box again
-        self.rect = (self.x, self.y, self.width, self.height)
 
 # function that convert positon string into a tuple
 # for example "23,24" to (23,24)
@@ -86,7 +49,7 @@ def main():
     # creating 1st player
     p = Player(startpos[0],startpos[1],100,100,(0,255,0))
     # creating 2nd player
-    p2 = Player(0,0,100,100,(0,255,0))
+    p2 = Player(0,0,100,100,(255,0,0))
     print(p.x,p.y)
     # game loop
     while run:

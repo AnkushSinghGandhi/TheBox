@@ -5,7 +5,7 @@ import sys
 
 # taking server and port
 server = "localhost"
-port = 9999
+port = 5555
 
 #--- CREATING A SOCKET---
 # AF_INET is an address family that is used to designate the type of addresses that your socket can communicate with (in this case, Internet Protocol v4 addresses). When you create a socket, you have to specify its address family,

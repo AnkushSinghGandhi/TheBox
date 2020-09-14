@@ -10,7 +10,7 @@ class Network:
         # seting server address (this is the address of server not of the client)
         self.server = "localhost"
         # setting port no. (should be same as of server)
-        self.port = 9999
+        self.port = 5555
         # creating a tuple of server and port no.
         self.addr = (self.server, self.port)
         # connect methode defined below
